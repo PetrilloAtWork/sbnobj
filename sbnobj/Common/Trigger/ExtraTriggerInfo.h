@@ -291,10 +291,18 @@ struct sbn::ExtraTriggerInfo {
   /// Returns the time from the beam gate to the trigger [ns].
   /// Only valid if beam gate timestamp is valid.
   constexpr std::int64_t triggerFromBeamGate() const
-    { 
+    {
       return static_cast<std::int64_t>(triggerTimestamp)
         - static_cast<std::int64_t>(beamGateTimestamp);
-    }  
+    }
+  
+  /// Returns the time from the enable gate to the beam gate [ns].
+  /// Only valid if beam and enable gate timestamps are both valid.
+  constexpr std::int64_t beamGateFromEnableGate() const
+    {
+      return static_cast<std::int64_t>(beamGateTimestamp)
+        - static_cast<std::int64_t>(enableGateTimestamp);
+    }
   
   /// Returns whether this object contains any valid information.
   constexpr bool isValid() const noexcept
